@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { ADD_OPENSPACE, CONFIRM_REPORT, CREATE_REPORT, DELETE_OPEN_SPACE, GET_ALL_HISTORY, GET_ALL_OPENSPACES, GET_ALL_OPENSPACES_ADMIN, GET_ALL_OPENSPACES_USER, GET_ALL_REPORT_USSD, GET_ALL_REPORTS, GET_ANONYMOUS_REPORTS, GET_HISTORY_COUNT, GET_MY_REPORTS, GET_OPENSPACE_COUNT, GET_REPORT_COUNT, REGISTER_REPORT_MUTATION, TOGGLE_OPENSPACE_STATUS } from '../graphql';
 import { OpenSpaceRegisterData, ToggleOpenSpaceResponse } from '../models/openspace.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 export type { OpenSpaceRegisterData, ToggleOpenSpaceResponse };
 
@@ -14,9 +15,9 @@ export type { OpenSpaceRegisterData, ToggleOpenSpaceResponse };
 })
 export class OpenspaceService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/v1/upload/';
-  private confirmReportUrl = 'http://127.0.0.1:8000/api/v1/confirm-report/';
-  private resetUrl = 'http://127.0.0.1:8000/api/v1';
+  private apiUrl = `${environment.apiUrl}/v1/upload/`;
+  private confirmReportUrl = `${environment.apiUrl}/v1/confirm-report/`;
+  private baseUrl = `${environment.apiUrl}/v1`;
   private openSpacesSubject = new BehaviorSubject<any[]>([]);
   openSpaces$ = this.openSpacesSubject.asObservable();
 
@@ -111,7 +112,7 @@ export class OpenspaceService {
   getDashboardCounts(): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    return this.http.get(`${this.resetUrl}/openspaces/count/ward/`, { headers });
+    return this.http.get(`${this.baseUrl}/openspaces/count/ward/`, { headers });
   }
 
 
@@ -169,7 +170,7 @@ export class OpenspaceService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<any[]>(`${this.resetUrl}/reports/forwarded-to-admin/`, { headers })
+    return this.http.get<any[]>(`${this.baseUrl}/reports/forwarded-to-admin/`, { headers })
       .pipe(
         catchError(error => {
           console.error('Error fetching forwarded reports for admin:', error);
@@ -286,7 +287,7 @@ submitReportREST(formData: FormData): Observable<any> {
     Authorization: `Bearer ${token}`
   });
 
-  return this.http.post(`${this.resetUrl}/reports/`, formData, { headers });
+  return this.http.post(`${this.baseUrl}/reports/`, formData, { headers });
 }
 
 
@@ -300,7 +301,7 @@ registerWardAndStreets(wardName: string, streets: string[]): Observable<any> {
       wardName: wardName,
       streets: streets
     };
-    return this.http.post(`${this.resetUrl}/streets/register/`, payload, { headers });
+    return this.http.post(`${this.baseUrl}/streets/register/`, payload, { headers });
   }
 
 
@@ -310,20 +311,20 @@ getReportsByStreet(): Observable<any[]> {
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`
   });
-  return this.http.get<any[]>(`${this.resetUrl}/reports/street/`, { headers });
+  return this.http.get<any[]>(`${this.baseUrl}/reports/street/`, { headers });
 }
 
 
 registerWard(name: string) {
   const token = localStorage.getItem('token');
   const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-  return this.http.post(`${this.resetUrl}/wards/register/`, { name }, { headers });
+  return this.http.post(`${this.baseUrl}/wards/register/`, { name }, { headers });
 }
 
 getWards(): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    return this.http.get(`${this.resetUrl}/wards/register/`, { headers });
+    return this.http.get(`${this.baseUrl}/wards/register/`, { headers });
   }
 
 
@@ -333,13 +334,13 @@ getWards(): Observable<any> {
       Authorization: `Bearer ${token}`
     });
 
-    return this.http.post(`${this.resetUrl}/reports/${reportId}/forward/`, {}, { headers });
+    return this.http.post(`${this.baseUrl}/reports/${reportId}/forward/`, {}, { headers });
   }
 
 
 
   replyToReport(reportId: string, message: string): Observable<any> {
-    return this.http.post<any>(`${this.resetUrl}/reports/${reportId}/reply/`, { message });
+    return this.http.post<any>(`${this.baseUrl}/reports/${reportId}/reply/`, { message });
   }
 
 }

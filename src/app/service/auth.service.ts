@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { match } from 'assert';
 import { jwtDecode } from 'jwt-decode';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
   export type { RegisterData, LoginData };
 
@@ -22,7 +23,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-  private resetUrl = 'http://localhost:8000';
+  private apiUrl = environment.apiUrl;
 
   constructor(
     private apollo: Apollo,
@@ -60,7 +61,7 @@ export class AuthService {
   }
 
   uploadProfileImage(formData: FormData): Observable<any> {
-    return this.http.put<any>('http://localhost:8000/api/v1/upload-profile-image/', formData);
+    return this.http.put<any>(`${this.apiUrl}/v1/upload-profile-image/`, formData);
   }
 
 
@@ -102,11 +103,11 @@ export class AuthService {
   }
 
   getProfile(): Observable<any> {
-    return this.http.get('http://localhost:8000/api/v1/profile/');
+    return this.http.get(`${this.apiUrl}/v1/profile/`);
   }
 
   sendResetLink(email: string): Observable<any> {
-    return this.http.post(`${ this.resetUrl}/api/v1/password-reset/`, { email });
+    return this.http.post(`${this.apiUrl}/v1/password-reset/`, { email });
   }
 
   confirmResetPassword(uid: string, token: string, password: string): Observable<any> {
@@ -115,16 +116,16 @@ export class AuthService {
       token: token,
       password: password
     };
-    return this.http.post(`${this.resetUrl}/api/v1/password-reset-confirm/`, payload)
+    return this.http.post(`${this.apiUrl}/v1/password-reset-confirm/`, payload)
   }
 
   getWards(): Observable<{ id: number, name: string }[]> {
-    return this.http.get<{ id: number, name: string }[]>(`${this.resetUrl}/api/v1/wards/`);
+    return this.http.get<{ id: number, name: string }[]>(`${this.apiUrl}/v1/wards/`);
   }
 
 
   getStreetsForWard(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.resetUrl}/api/v1/streets`, {
+    return this.http.get<string[]>(`${this.apiUrl}/v1/streets`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -132,11 +133,11 @@ export class AuthService {
   }
 
   getAdminWards(): Observable<{ id: number; name: string }[]> {
-    return this.http.get<{ id: number; name: string }[]>(`${this.resetUrl}/api/v1/wards-admin/`);
+    return this.http.get<{ id: number; name: string }[]>(`${this.apiUrl}/v1/wards-admin/`);
   }
 
   getStreetsByWard(wardName: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.resetUrl}/api/v1/streets-admin/?ward=${wardName}`);
+    return this.http.get<any[]>(`${this.apiUrl}/v1/streets-admin/?ward=${wardName}`);
   }
 
 }

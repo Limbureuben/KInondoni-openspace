@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./django-secondv3
+    container_name: kinondoni-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+    volumes:
+      - ./django-secondv3:/app
+
+  frontend:
+    build: ./kinondoni-openspace
+    container_name: kinondoni-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:alpine
+    container_name: kinondoni-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - backend

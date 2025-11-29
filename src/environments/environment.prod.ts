@@ -1,9 +1,9 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8099/api',
-  graphqlUrl: 'http://localhost:8099/graphql',
-  wsUrl: 'ws://localhost:8099/ws',
-  mediaUrl: 'http://localhost:8099/media',
+  production: true,
+  apiUrl: '/api',
+  graphqlUrl: '/graphql',
+  wsUrl: '/ws',
+  mediaUrl: '/media',
   firebase: {
     apiKey: "AIzaSyD4d_WpT1X7d7UtvnPnCz4DSZhmg2O2LeQ",
     authDomain: "openspace-a2cff.firebaseapp.com",
@@ -12,6 +12,5 @@ export const environment = {
     messagingSenderId: "644156117035",
     appId: "1:644156117035:web:31ef865a08fa9b2cb1da6e",
     measurementId: "G-YZYQ0SDSXF"
-  },
+  }
 };
-
