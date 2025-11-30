@@ -4,6 +4,7 @@ import { inject, NgModule } from '@angular/core';
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 
 export function createApollo(): ApolloClientOptions<any> {
+  // const uri = 'http://127.0.0.1:8000/graphql/';
   const uri = 'http://127.0.0.1:8000/graphql/';
   const httpLink = inject(HttpLink);
 
