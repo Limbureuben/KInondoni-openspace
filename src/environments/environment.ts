@@ -1,9 +1,9 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8099/api',
-  graphqlUrl: 'http://localhost:8099/graphql',
-  wsUrl: 'ws://localhost:8099/ws',
-  mediaUrl: 'http://localhost:8099/media',
+  apiUrl: '/api',
+  graphqlUrl: '/graphql',
+  wsUrl: '/ws',
+  mediaUrl: '/media',
   firebase: {
     apiKey: "AIzaSyD4d_WpT1X7d7UtvnPnCz4DSZhmg2O2LeQ",
     authDomain: "openspace-a2cff.firebaseapp.com",
