@@ -10,7 +10,6 @@ import { Token } from 'graphql';
   providedIn: 'root'
 })
 export class BookingService {
-  // private resetUrl = 'http://localhost:8000';
   private resetUrl = `${environment.apiUrl}`;
 
   constructor(
