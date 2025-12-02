@@ -11,7 +11,7 @@ import { Token } from 'graphql';
 })
 export class BookingService {
   // private resetUrl = 'http://localhost:8000';
-  private resetUrl = `${environment.api}`
+  private resetUrl = `${environment.apiUrl}`;
 
   constructor(
     private apollo: Apollo,
