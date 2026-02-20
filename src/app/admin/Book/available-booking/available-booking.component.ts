@@ -47,6 +47,7 @@ export class AvailableBookingComponent implements OnInit{
   selectedReport: any = null;
   showPopup: boolean = false;
   backendUrl = 'http://localhost:8000';
+  // backendUrl = 'http://95.111.247.129:8099';
 
   constructor(
     private bookingService: BookingService,

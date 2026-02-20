@@ -18,7 +18,7 @@ export class RegisterWardsComponent implements OnInit {
 
   // Predefined streets manually
   allStreets: string[] = [
-    'Uhuru Street', 'Mtaa wa Juu', 'Nyerere Road', 'Kawe'
+    'Tegeta', 'Mtaa wa Juu', 'Nyerere Road', 'Kawe'
   ];
 
   selectedStreets: string[] = []; // streets selected in form

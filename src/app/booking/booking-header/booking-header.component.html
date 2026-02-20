@@ -1,9 +1,9 @@
-<mat-toolbar class="heading">
+<!-- <mat-toolbar class="heading">
   <button mat-icon-button>
-    <mat-icon>brightness_6</mat-icon> <!-- Theme Toggle -->
+    <mat-icon>brightness_6</mat-icon>
   </button>
 
-  <!-- Profile Icon (Left) with Dropdown Menu -->
+
   <mat-menu #profileMenu="matMenu">
     <button mat-menu-item (click)="NavigateToDashboard()">
       <mat-icon>dashboard</mat-icon>Dashboard
@@ -37,4 +37,72 @@
         (click)="openNotificationDialog()">
   <mat-icon class="profile-icon">notifications</mat-icon>
 </button>
+</mat-toolbar> -->
+
+
+
+<mat-toolbar class="main-toolbar">
+
+  <!-- Mobile Menu Button -->
+  <button mat-icon-button class="mobile-only" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Logo / Title -->
+  <span class="title">KINONDONI MUNICIPAL</span>
+
+  <!-- Desktop Menu -->
+  <nav class="desktop-menu">
+    <button mat-button (click)="NavigateToDashboard()">Dashboard</button>
+    <button mat-button (click)="NavigateToOpenspace()">Open Spaces</button>
+    <button mat-button (click)="openReportHistoryDialog()">My Bookings</button>
+    <button mat-button (click)="NavigateToCalender()">Calendar</button>
+    <button mat-button (click)="NavigateToContact()">Contact</button>
+  </nav>
+
+  <span class="spacer"></span>
+
+  <!-- Theme Toggle -->
+  <button mat-icon-button>
+    <mat-icon>brightness_6</mat-icon>
+  </button>
+
+  <!-- Notifications -->
+  <button mat-icon-button
+          [matBadge]="unreadCount"
+          matBadgeColor="warn"
+          [matBadgeHidden]="unreadCount === 0"
+          (click)="openNotificationDialog()">
+    <mat-icon>notifications</mat-icon>
+  </button>
+
+  <!-- Profile Menu -->
+  <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
 </mat-toolbar>
+
+<!-- Profile Dropdown -->
+<mat-menu #profileMenu="matMenu">
+  <button mat-menu-item (click)="NavigateToDashboard()">
+    <mat-icon>dashboard</mat-icon> Dashboard
+  </button>
+  <button mat-menu-item (click)="NavigateToLogout()">
+    <mat-icon>logout</mat-icon> Logout
+  </button>
+</mat-menu>
+
+<!-- Mobile Drawer -->
+<mat-drawer-container class="drawer-container">
+  <mat-drawer #drawer mode="over" class="mobile-drawer">
+    <button mat-button (click)="NavigateToDashboard()">Dashboard</button>
+    <button mat-button (click)="NavigateToOpenspace()">Available Open Spaces</button>
+    <button mat-button (click)="openReportHistoryDialog()">My Bookings</button>
+    <button mat-button (click)="NavigateToCalender()">Calendar</button>
+    <button mat-button (click)="NavigateToContact()">Contact</button>
+    <button mat-button color="warn" (click)="NavigateToLogout()">Logout</button>
+  </mat-drawer>
+
+  <mat-drawer-content></mat-drawer-content>
+</mat-drawer-container>

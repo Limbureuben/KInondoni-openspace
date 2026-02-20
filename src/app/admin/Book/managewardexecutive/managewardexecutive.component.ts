@@ -98,7 +98,6 @@ export class ManagewardexecutiveComponent implements OnInit{
   }
 
   toggleStatus(user: any) {
-    // Toggle user status logic here
     user.isActive = !user.isActive;
     this.snackBar.open(`Executive ${user.isActive ? 'activated' : 'deactivated'} successfully`, 'Close', {
       duration: 3000
@@ -106,11 +105,9 @@ export class ManagewardexecutiveComponent implements OnInit{
   }
 
   deleteUser(user: any) {
-    // Delete user logic here
     console.log('Delete user:', user);
   }
 
-  // New helper methods for the enhanced UI
   getActiveExecutivesCount(): number {
     return this.dataSource.data.filter(exec => exec.isActive !== false).length;
   }

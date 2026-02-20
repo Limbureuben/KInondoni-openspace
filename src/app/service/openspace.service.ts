@@ -275,19 +275,23 @@ getMyReports(): Observable<any> {
     return this.http.post(`${this.confirmReportUrl}${id}/`, {});
 }
 
-//   submitReportREST(formData: FormData): Observable<any> {
-//   return this.http.post(`${this.resetUrl}/reports/`, formData);
-// }
 
 submitReportREST(formData: FormData): Observable<any> {
-  const token = localStorage.getItem('token');  // adjust key as needed
+  let headers = new HttpHeaders();
+  const token = localStorage.getItem('token');
 
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`
-  });
+  // Only attach token if it exists and is valid
+  if (token && token !== 'null' && token !== 'undefined' && token.trim() !== '') {
+    headers = headers.set('Authorization', `Bearer ${token}`);
+  }
+
+  // DEBUG: log headers for troubleshooting
+  console.log('Submitting report with headers:', headers.keys());
 
   return this.http.post(`${this.resetUrl}/reports/`, formData, { headers });
 }
+
+
 
 
 

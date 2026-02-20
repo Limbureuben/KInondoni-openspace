@@ -1,66 +1,176 @@
-.container {
-  padding: 3rem 2rem;
-  text-align: center;
-  background: linear-gradient(to right, #f0f4ff, #e8f0fe);
-  min-height: 72.2vh;
+// .container {
+//   padding: 3rem 2rem;
+//   text-align: center;
+//   background: linear-gradient(to right, #f0f4ff, #e8f0fe);
+//   min-height: 72.2vh;
 
+//   @media (max-width: 600px) {
+//     padding: 2rem 1rem;
+//   }
+
+//   .title {
+//     font-size: 1.5rem;
+//     color: #3f51b5;
+//     margin-bottom: 1rem;
+//   }
+
+//   .description {
+//     max-width: 700px;
+//     margin: 0 auto 2rem;
+//     font-size: 1.1rem;
+//     color: #444;
+
+//     @media (max-width: 600px) {
+//       font-size: 1rem;
+//     }
+//   }
+
+//   .cards-wrapper {
+//     display: flex;
+//     justify-content: center;
+//     gap: 2rem;
+//     flex-wrap: wrap;
+//   }
+
+//   .card {
+//     width: 320px;
+//     border-radius: 4px;
+//     cursor: pointer;
+//     transition: all 0.3s ease;
+//     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+//     padding: 1rem;
+
+//     @media (max-width: 600px) {
+//       width: 100%;
+//       max-width: 320px;
+//     }
+
+//     &:hover {
+//       transform: translateY(-6px);
+//       box-shadow: 0 12px 20px rgba(63, 81, 181, 0.2);
+//     }
+
+//     .icon-wrapper {
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       margin-bottom: 1rem;
+//     }
+
+//     .card-icon {
+//       font-size: 60px;
+//       height: 60px;
+//       width: 60px;
+//     }
+
+//     mat-card-title {
+//       font-size: 1.4rem;
+//       margin-bottom: 0.5rem;
+//       font-weight: 500;
+//       color: #3f51b5;
+//     }
+
+//     mat-card-content {
+//       font-size: 1rem;
+//       color: #555;
+//     }
+//   }
+// }
+
+
+
+
+
+
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+/* Title */
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1f2937; // dark gray
+  margin-bottom: 1rem;
+}
+
+/* Description text */
+.description {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  font-size: 1.05rem;
+  color: #4b5563; // soft gray
+  line-height: 1.7;
+}
+
+/* Cards layout */
+.cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Card styling */
+.card {
+  cursor: pointer;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  text-align: center;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Icon container */
+.icon-wrapper {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Icon itself */
+.card-icon {
+  font-size: 36px;
+}
+
+/* Card title */
+mat-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #111827;
+}
+
+/* Card content */
+mat-card-content p {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* Responsive spacing */
+@media (max-width: 600px) {
   .title {
-    font-size: 1.5rem;
-    color: #3f51b5;
-    margin-bottom: 1rem;
+    font-size: 1.8rem;
   }
 
   .description {
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    font-size: 1.1rem;
-    color: #444;
-  }
-
-  .cards-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .card {
-    width: 320px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    // box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    padding: 1rem;
-
-    &:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 20px rgba(63, 81, 181, 0.2);
-    }
-
-    .icon-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .card-icon {
-      font-size: 60px;
-      height: 60px;
-      width: 60px;
-    }
-
-    mat-card-title {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: #3f51b5;
-    }
-
-    mat-card-content {
-      font-size: 1rem;
-      color: #555;
-    }
+    font-size: 1rem;
   }
 }

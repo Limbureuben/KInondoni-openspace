@@ -7,7 +7,8 @@
   background-size: 35%;
   background-position: center top;
   background-repeat: no-repeat;
-  height: calc(95vh - 15px); /* Adjust based on header & footer height */
+  height: calc(95vh - 15px);
+  /* Adjust based on header & footer height */
 }
 
 /* Overlay to dim the background */
@@ -18,6 +19,10 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(to right, #f0f4ff, #e8f0fe);
+}
+
+:host-context(body.dark-theme) .register-overlay {
+  background: linear-gradient(to right, #1a1a1a, #2d2d2d);
 }
 
 /* Container for the register form */
@@ -34,6 +39,11 @@
   margin-bottom: 10px;
   min-height: 150px;
   z-index: 1001;
+}
+
+:host-context(body.dark-theme) .register-container {
+  background: linear-gradient(to right, #2c2c2c, #3a3a3a);
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
 }
 
 /* Row layout for pairs of fields */
@@ -73,8 +83,16 @@
   color: #555;
 }
 
+:host-context(body.dark-theme) .close-btn {
+  color: #ccc;
+}
+
 .close-btn:hover {
   color: #000;
+}
+
+:host-context(body.dark-theme) .close-btn:hover {
+  color: #fff;
 }
 
 /* Styling for the registration heading */
@@ -83,6 +101,10 @@
   color: #333;
   margin-bottom: 0.5rem;
   font-weight: bold;
+}
+
+:host-context(body.dark-theme) .registration-heading {
+  color: #e0e0e0;
 }
 
 mat-form-field {
@@ -98,9 +120,22 @@ mat-form-field .mat-form-field-wrapper {
   background: #f9f9f9;
 }
 
+:host-context(body.dark-theme) mat-form-field .mat-form-field-wrapper {
+  background: #444;
+  border-color: #666;
+}
+
 mat-form-field .mat-input-element {
   font-size: 16px;
   padding: 0px;
+}
+
+:host-context(body.dark-theme) mat-form-field .mat-input-element {
+  color: white;
+}
+
+:host-context(body.dark-theme) .mat-form-field-label {
+  color: #bbb !important;
 }
 
 /* Styling for actions (button) */
@@ -132,6 +167,11 @@ mat-form-field .mat-input-element {
   text-align: center;
   margin-top: 0rem;
   font-size: 12px;
+  color: #333;
+}
+
+:host-context(body.dark-theme) .login-link {
+  color: #ccc;
 }
 
 .login-link a {
@@ -140,6 +180,10 @@ mat-form-field .mat-input-element {
   font-weight: bold;
   margin-left: 5px;
   cursor: pointer;
+}
+
+:host-context(body.dark-theme) .login-link a {
+  color: #82b1ff;
 }
 
 .login-link a:hover {
@@ -153,6 +197,10 @@ mat-form-field .mat-input-element {
   margin-top: 10px;
   margin-bottom: 20px;
   text-align: center;
+}
+
+:host-context(body.dark-theme) .country-name {
+  color: #e0e0e0;
 }
 
 /* Footer styles */
@@ -209,4 +257,8 @@ app-footer {
   font-size: 34px;
   font-weight: bold;
   color: #333;
+}
+
+:host-context(body.dark-theme) .back-button {
+  color: #fff;
 }

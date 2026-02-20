@@ -196,11 +196,6 @@ addMarkersToMap(): void {
             });
           }
 
-          // // Events
-          // this.map?.on('click', sourceId, () => {
-          //   console.log('Square clicked for:', space.name);
-          //   this.openReportForm(space);
-          // });
 
           this.map?.on('click', sourceId, (e) => {
             const popupContent = document.createElement('div');
@@ -349,108 +344,6 @@ triggerFileInput() {
     this.suggestions = [];
   }
 
-
-  // onFileSelected(event: any): void {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     this.selectedFile = file;
-  //     this.selectedFileName = file.name;
-  //   } else {
-  //     this.selectedFile = null;
-  //     this.selectedFileName = '';
-  //   }
-  // }
-
-// submitReport(): void {
-//   const userId = localStorage.getItem('user_id');
-
-//   if (this.reportForm.invalid) {
-//     Object.keys(this.reportForm.controls).forEach(key => {
-//       const control = this.reportForm.get(key);
-//       control?.markAsTouched();
-//     });
-//     return;
-//   }
-
-//   this.closeForm();
-//   this.showConfirmationModal = true;
-// }
-
-// confirmSubmission(): void {
-//   console.log('Confirm clicked');
-//   const startTime = Date.now();
-
-//   const userId = localStorage.getItem('userId');
-//   this.submitting = true;
-//   this.success = false;
-//   this.errorMessage = '';
-
-//   console.log('Before file upload');
-
-//   this.openSpaceService.uploadFile(this.selectedFile)
-//     .pipe(
-//       switchMap(response => {
-//         console.log('File upload finished in', Date.now() - startTime, 'ms');
-//         const reportData = {
-//           description: this.reportForm.get('description')?.value,
-//           email: this.reportForm.get('email')?.value || null,
-//           filePath: response.file_path || null,
-//           spaceName: this.selectedSpace.name,
-//           district: this.selectedSpace.district,
-//           street: this.selectedSpace.street,
-//           latitude: this.selectedSpace.latitude,
-//           longitude: this.selectedSpace.longitude,
-//           userId: userId || null
-//         };
-
-//         console.log('Submitting report with data:', reportData);
-//         return this.openSpaceService.createReport(
-//           reportData.description,
-//           reportData.email,
-//           reportData.filePath,
-//           reportData.spaceName,
-//           reportData.district,
-//           reportData.street,
-//           reportData.latitude,
-//           reportData.longitude,
-//           reportData.userId
-//         );
-//       })
-//     )
-//     .subscribe({
-//       next: (response) => {
-//         console.log('Report created successfully in', Date.now() - startTime, 'ms');
-//         this.submitting = false;
-//         this.success = true;
-//         this.reportId = response.createReport.report.reportId;
-
-//         Swal.fire({
-//           title: `Report of ID ${this.reportId} has been submitted successfully!`,
-//           icon: "success",
-//           draggable: true,
-//           customClass: {
-//             title: 'custom-title',
-//             popup: 'custom-popup'
-//           }
-//         });
-//         this.showConfirmationModal = false;
-
-//         setTimeout(() => {
-//           this.closeForm();
-//           this.resetForm();
-//         }, 1000);
-//       },
-//       error: (error) => {
-//         console.error('Error submitting report:', error);
-//         this.submitting = false;
-//         this.errorMessage = 'Failed to submit report. Please try again.';
-//         this.toastr.error('Error submitting report', 'Error', {
-//           positionClass: 'toast-top-right',
-//         });
-//       }
-//     });
-// }
-
 onFileSelected(event: any): void {
   const file = event.target.files[0];
   if (file) {
@@ -479,13 +372,18 @@ submitReport(): void {
 
 
 confirmSubmission(): void {
-  console.log('Confirm clicked');
-  const startTime = Date.now();
+  if (this.reportForm.invalid) {
+    Object.keys(this.reportForm.controls).forEach(key => {
+      this.reportForm.get(key)?.markAsTouched();
+    });
+    return;
+  }
 
-  const userId = localStorage.getItem('userId');
+  this.closeForm();
+  this.showConfirmationModal = true;
   this.submitting = true;
-  this.success = false;
   this.errorMessage = '';
+  this.success = false;
 
   const formData = new FormData();
   formData.append('description', this.reportForm.get('description')?.value);
@@ -495,31 +393,24 @@ confirmSubmission(): void {
   formData.append('street', this.selectedSpace.street || '');
   formData.append('latitude', this.selectedSpace.latitude?.toString() || '');
   formData.append('longitude', this.selectedSpace.longitude?.toString() || '');
-  if (userId) {
-    formData.append('user_id', userId);
-  }
 
-  // Optional file
   if (this.selectedFile) {
     formData.append('file', this.selectedFile, this.selectedFile.name);
   }
 
-  console.log('Submitting report via REST with FormData:', formData);
+  console.log('Submitting report FormData:', formData);
 
   this.openSpaceService.submitReportREST(formData).subscribe({
     next: (response) => {
-      console.log('Report created successfully in', Date.now() - startTime, 'ms');
+      console.log('Report submitted successfully:', response);
       this.submitting = false;
       this.success = true;
       this.reportId = response.reportId;
 
       Swal.fire({
         title: `Report ID ${this.reportId} submitted successfully!`,
-        icon: "success",
-        customClass: {
-          title: 'custom-title',
-          popup: 'custom-popup'
-        }
+        icon: 'success',
+        customClass: { title: 'custom-title', popup: 'custom-popup' }
       });
 
       this.showConfirmationModal = false;
@@ -532,12 +423,11 @@ confirmSubmission(): void {
       console.error('Error submitting report:', error);
       this.submitting = false;
       this.errorMessage = 'Failed to submit report. Please try again.';
-      this.toastr.error('Error submitting report', 'Error', {
-        positionClass: 'toast-top-right',
-      });
+      this.toastr.error('Error submitting report', 'Error', { positionClass: 'toast-top-right' });
     }
   });
 }
+
 
 
 
@@ -557,52 +447,3 @@ cancelSubmission(): void {
     this.map?.setStyle(styleUrl);
   }
 }
-
-
-
-//swal
-// Swal.fire({
-//   title: "Drag me!",
-//   icon: "success",
-//   draggable: true
-// });
-
-
-// Swal.fire({
-//   title: "Do you want to save the changes?",
-//   showDenyButton: true,
-//   showCancelButton: true,
-//   confirmButtonText: "Save",
-//   denyButtonText: `Don't save`
-// }).then((result) => {
-//   /* Read more about isConfirmed, isDenied below */
-//   if (result.isConfirmed) {
-//     Swal.fire("Saved!", "", "success");
-//   } else if (result.isDenied) {
-//     Swal.fire("Changes are not saved", "", "info");
-//   }
-// });
-
-
-
-
-
-      // const popupContent = document.createElement('div');
-      //   popupContent.classList.add('popup-content');
-      //   popupContent.innerHTML = `
-      //     <h3>${space.name}</h3>
-      //     <p>Location: (${space.latitude}, ${space.longitude})</p>
-      //     <button class="report-problem-btn">Report Problem</button>
-      //   `;
-
-      //     const popup = new Popup({ offset: 25 })
-      //       .setDOMContent(popupContent);
-
-      //     // Marker.setPopup(popup);
-
-      //     // Open form when button inside popup is clicked
-      //     popupContent.querySelector('.report-problem-btn')?.addEventListener('click', (e) => {
-      //       e.stopPropagation();
-      //       console.log('Report button clicked for:', space.name);
-      //       this.openReportForm(space);
-      //     });

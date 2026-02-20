@@ -70,8 +70,32 @@
     </div>
   </div>
 
+
+
+  <div *ngIf="showConfirmationModal" class="confirmation-modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+  <div class="modal-content bg-white rounded-xl shadow-lg p-6 w-full max-w-md animate-slide-in">
+    <h3 class="text-2xl font-bold mb-4 text-indigo-600 text-center">Confirm Your Report</h3>
+
+    <div class="mb-4 space-y-2">
+      <p><span class="font-semibold text-gray-700">Description:</span> {{ reportForm.value.description }}</p>
+      <p><span class="font-semibold text-gray-700">Email:</span> {{ reportForm.value.email || 'Not Provided' }}</p>
+      <p><span class="font-semibold text-gray-700">File:</span> {{ selectedFileName || 'No file selected' }}</p>
+    </div>
+
+    <div class="modal-actions flex justify-center gap-4 mt-6">
+      <button mat-raised-button color="primary" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg shadow-md transition duration-200" (click)="confirmSubmission()">
+        Confirm
+      </button>
+      <button mat-raised-button color="warn" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg shadow-md transition duration-200" (click)="cancelSubmission()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+
   <!-- Confirmation Modal -->
-  <div *ngIf="showConfirmationModal" class="confirmation-modal">
+  <!-- <div *ngIf="showConfirmationModal" class="confirmation-modal">
     <div class="modal-content">
       <h3>Confirm Your Report</h3>
       <p><strong>Description:</strong> {{ reportForm.value.description }}</p>
@@ -83,4 +107,4 @@
         <button mat-raised-button color="warn" (click)="cancelSubmission()">Cancel</button>
       </div>
     </div>
-  </div>
+  </div> -->

@@ -37,18 +37,6 @@
       <td mat-cell *matCellDef="let row">{{ row.report?.street || row.street }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="message">
-      <th mat-header-cell *matHeaderCellDef>MESSAGE</th>
-      <td mat-cell *matCellDef="let row">
-        <span *ngIf="(row.message || row.report?.message) && (row.message || row.report?.message).trim(); else noMessage">
-          {{ row.message || row.report?.message }}
-        </span>
-        <ng-template #noMessage>
-          <span class="no-message-text">No message provided</span>
-        </ng-template>
-      </td>
-    </ng-container>
-
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>STATUS</th>
       <td mat-cell *matCellDef="let row">
@@ -74,14 +62,13 @@
           <mat-icon>forward</mat-icon>
           {{ row.forwarded_to_admin ? 'Forwarded' : 'Forward' }}
         </button>
-        <button
-          mat-raised-button
-          color="accent"
-          (click)="replyReport(row); $event.stopPropagation()"
-          style="margin-left: 8px;">
-          <mat-icon>reply</mat-icon>
-          Reply
-        </button>
+        <!-- <button
+            mat-icon-button
+            color="warn"
+            (click)="replyReport(row); $event.stopPropagation()"
+            matTooltip="Reply to report">
+            <mat-icon>reply</mat-icon>
+          </button> -->
       </td>
     </ng-container>
 

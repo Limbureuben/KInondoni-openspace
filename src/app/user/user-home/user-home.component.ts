@@ -20,7 +20,6 @@ export class UserHomeComponent implements OnInit, OnDestroy {
   private themeSubscription: Subscription = new Subscription();
 
   // ===== Language Switcher =====
-  showLanguageButtons = false; // toggle EN/SW flags
   currentLanguage = 'en';
 
   @ViewChild('chatbotContainer') chatbotContainer!: ElementRef;
@@ -31,7 +30,7 @@ export class UserHomeComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private themeService: ThemeService,
     private renderer: Renderer2
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Subscribe to theme changes
@@ -81,13 +80,8 @@ export class UserHomeComponent implements OnInit, OnDestroy {
   }
 
   // ===================== Language Switcher =====================
-  toggleLanguage(): void {
-    this.showLanguageButtons = true; // show flags when clicked
-  }
-
   changeLanguage(lang: string): void {
     this.currentLanguage = lang;
-    this.showLanguageButtons = false; // hide flags after selection
 
     if (typeof window !== 'undefined' && window.localStorage) {
       localStorage.setItem('selectedLanguage', lang);

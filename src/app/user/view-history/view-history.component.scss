@@ -1,89 +1,180 @@
 
+/* ================================
+   Dialog Container
+================================ */
 .table-container {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  max-height: 80vh;
-  overflow: auto;
-  position: relative;
+  padding: 0;
+  background: linear-gradient(180deg, #f8fbff, #eef4ff);
+  border-radius: 18px;
+  overflow: hidden;
+  animation: dialogFadeIn 0.4s ease;
 }
 
+/* ================================
+   Header Section
+================================ */
 .header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  padding: 18px 24px;
+  background: linear-gradient(90deg, rgb(100, 100, 177), #47a1eb);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .table-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: rgb(100, 100, 177);
-  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
 }
 
 .search-container {
-  flex-grow: 1;
-  display: flex;
-  justify-content: flex-end;
-  margin-left: auto;
-  margin-right: 40px;
+  flex: 1;
+  max-width: 320px;
+  margin: 0 24px;
 }
 
 .search-field {
-  width: 250px;
+  width: 100%;
+
+  .mat-form-field-outline {
+    border-radius: 12px;
+  }
+
+  input {
+    color: #1e293b;
+    font-weight: 500;
+  }
+
+  mat-icon {
+    color: #47a1eb;
+  }
 }
 
+/* Close Button */
 .close-btn {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.15);
   border: none;
-  font-size: 24px;
-  color: #888;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 6px 10px;
+  border-radius: 50%;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: rotate(90deg);
+  }
 }
 
-.close-btn:hover {
-  color: #f44336;
-}
-
+/* ================================
+   Table Styling
+================================ */
 .custom-table {
   width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
+  border-spacing: 0;
+  background: transparent;
+
+  th {
+    background: #f1f5ff;
+    font-weight: 700;
+    color: #334155;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 14px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  td {
+    padding: 14px;
+    font-size: 0.95rem;
+    color: #1f2937;
+  }
+
+  tr.mat-row {
+    background: #ffffff;
+    border-radius: 12px;
+    margin: 6px 0;
+    transition: all 0.35s ease;
+    animation: rowSlideUp 0.4s ease both;
+
+    &:hover {
+      background: #f0f6ff;
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 12px 24px rgba(71, 161, 235, 0.25);
+    }
+  }
 }
 
-.mat-header-row,
-.mat-row {
-  height: 56px;
-}
-
-.mat-header-cell {
-  background-color: #f5f5f5;
-  font-weight: 600;
-  color: #555;
-}
-
-.mat-cell {
-  color: #333;
-}
-
-.mat-row:hover {
-  background-color: #f0f8ff;
-}
-
+/* ================================
+   Status Icon
+================================ */
 .confirmed-icon {
-  color: #4caf50;
-  font-size: 20px;
+  color: #16a34a;
+  font-size: 1.5rem;
+  animation: pulseSuccess 1.8s infinite;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #1976d2;
+/* ================================
+   Paginator Styling
+================================ */
+::ng-deep .mat-paginator {
+  background: transparent;
+  padding: 12px 16px;
+
+  .mat-paginator-range-label {
+    font-weight: 600;
+    color: #475569;
+  }
+
+  button {
+    border-radius: 8px !important;
+  }
 }
 
-::ng-deep .mat-paginator-container {
-  justify-content: center;
-  padding: 10px 0;
+/* ================================
+   Animations
+================================ */
+@keyframes dialogFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
+
+@keyframes rowSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSuccess {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+

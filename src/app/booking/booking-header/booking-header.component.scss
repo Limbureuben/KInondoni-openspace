@@ -1,36 +1,104 @@
-mat-toolbar {
-  background-color: rgb(100, 100, 177) !important;
-  // background-color: white;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
+// mat-toolbar {
+//   background-color: rgb(100, 100, 177) !important;
+//   // background-color: white;
+//   color: white;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   padding: 0 16px;
+// }
+
+// .title {
+//   flex: 1;
+//   text-align: center;
+//   font-size: 18px;
+//   font-weight: bold;
+// }
+
+// .profile-icon {
+//   color: white !important; /* Ensures the icon remains white */
+
+// }
+
+
+// .register-button {
+//   background-color: #ff5722;
+//   color: white;
+//   border: none;
+//   padding: 8px 15px;
+//   border-radius: 5px;
+//   cursor: pointer;
+// }
+
+// .register-button:hover {
+//   background-color: #e64a19;
+// }
+
+
+
+.main-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(90deg, rgb(100, 100, 177), #47a1eb);
+  color: #ffffff;
+  padding: 0 1rem;
 }
 
 .title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.spacer {
   flex: 1;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
 }
 
-.profile-icon {
-  color: white !important; /* Ensures the icon remains white */
-
+/* Desktop Menu */
+.desktop-menu {
+  display: flex;
+  gap: 0.5rem;
 }
 
-
-.register-button {
-  background-color: #ff5722;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
+.desktop-menu button {
+  color: #e5e7eb;
+  font-weight: 500;
 }
 
-.register-button:hover {
-  background-color: #e64a19;
+.desktop-menu button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
 }
 
+/* Mobile menu hidden on desktop */
+.mobile-only {
+  display: none;
+}
+
+/* Drawer */
+.drawer-container {
+  position: relative;
+}
+
+.mobile-drawer {
+  width: 260px;
+  padding: 1rem;
+}
+
+.mobile-drawer button {
+  width: 100%;
+  justify-content: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive rules */
+@media (max-width: 900px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .mobile-only {
+    display: inline-flex;
+  }
+}

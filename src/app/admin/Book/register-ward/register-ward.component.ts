@@ -26,13 +26,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class RegisterWardComponent {
 
   form: FormGroup;
-  // wardOptions: string[] = [];
   wardOptions: { id: number, name: string }[] = [];
-//   wardOptions: string[] = [
-//   'Bunju','Hananasif','Kawe','Kigogo','Kijitonyama','Kinondoni',
-//   'Kunduchi','Mabwepande','Magomeni','Makongo','Makumbusho','Mbezi Juu',
-//   'Mbweni','Mikocheni','Msasani','Mwananyamala','Mzimuni','Ndugumbi','Tandale','Wazo'
-// ];
 
   constructor(
     private fb: FormBuilder,
@@ -51,18 +45,6 @@ export class RegisterWardComponent {
     });
   }
 
-
-  // ngOnInit(): void {
-  //   this.authservice.getWards().subscribe({
-  //     next: (data) => {
-  //       this.wardOptions = data;
-  //     },
-  //     error: (err) => {
-  //       console.error('Failed to load wards:', err);
-  //     }
-  //   });
-  // }
-
   ngOnInit(): void {
     this.authservice.getWards().subscribe({
       next: (wards) => {
@@ -76,8 +58,8 @@ export class RegisterWardComponent {
 
   passwordStrengthValidator(control: any) {
     const value = control.value;
+    
     if (!value) return { weakPassword: true };
-
     const hasUpperCase = /[A-Z]/.test(value);
     const hasLowerCase = /[a-z]/.test(value);
     const hasNumber = /[0-9]/.test(value);
@@ -106,7 +88,6 @@ export class RegisterWardComponent {
       this.toastr.error('Enter valid values', 'Validation Error', { positionClass: 'toast-top-right' });
       return;
     }
-
     const sessionId = localStorage.getItem('sessionId');
     const registrationData: RegisterData = {
       username: this.form.value.username,

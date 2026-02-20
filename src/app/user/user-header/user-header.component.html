@@ -1,6 +1,6 @@
-<mat-toolbar class="heading">
+<!-- <mat-toolbar class="heading">
 
-  <!-- Profile Icon (Left) with Dropdown Menu -->
+
   <mat-menu #profileMenu="matMenu">
     <button mat-menu-item (click)="onProfile()">
       <mat-icon>person</mat-icon> Profile
@@ -23,9 +23,76 @@
     <mat-icon class="profile-icon">account_circle</mat-icon>
   </button>
 
-  <!-- Title in Center -->
+
   <span class="title">Kinondoni Municipal</span>
 
-  <!-- Emblem Icon on the Right -->
+
   <mat-icon class="profile-icon">verified</mat-icon>
+</mat-toolbar> -->
+
+
+
+
+
+
+<mat-toolbar class="heading">
+
+  <!-- Hamburger menu (SMALL screens only) -->
+  <button
+    mat-icon-button
+    class="menu-btn"
+    (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Title -->
+  <span class="title">Kinondoni Municipal</span>
+
+  <span class="spacer"></span>
+
+  <!-- Navigation links (LARGE screens) -->
+  <nav class="nav-links">
+    <button mat-button (click)="onProfile()">Profile</button>
+    <button mat-button (click)="openReport()">My Report</button>
+    <button mat-button (click)="openNotification()">Notifications</button>
+    <button mat-button (click)="goBack()">Back</button>
+    <button mat-button (click)="OnLogout()">Logout</button>
+  </nav>
+
+  <!-- Profile Icon -->
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="profileMenu"
+    class="profile-btn">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
 </mat-toolbar>
+
+<!-- Mobile menu (SMALL screens) -->
+<div class="mobile-menu" *ngIf="menuOpen">
+  <button mat-button (click)="onProfile()">Profile</button>
+  <button mat-button (click)="openReport()">My Report</button>
+  <button mat-button (click)="openNotification()">Notifications</button>
+  <button mat-button (click)="goBack()">Back</button>
+  <button mat-button (click)="OnLogout()">Logout</button>
+</div>
+
+<!-- Profile dropdown -->
+<mat-menu #profileMenu="matMenu">
+  <button mat-menu-item (click)="onProfile()">
+    <mat-icon>person</mat-icon> Profile
+  </button>
+  <button mat-menu-item (click)="openReport()">
+    <mat-icon>report</mat-icon> My Report
+  </button>
+  <button mat-menu-item (click)="openNotification()">
+    <mat-icon>notifications</mat-icon> Notifications
+  </button>
+  <button mat-menu-item (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon> Back
+  </button>
+  <button mat-menu-item (click)="OnLogout()">
+    <mat-icon>logout</mat-icon> Logout
+  </button>
+</mat-menu>

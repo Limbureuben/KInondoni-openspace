@@ -1,6 +1,10 @@
 <mat-toolbar class="heading">
 
-  <!-- Profile Icon (Left) with Dropdown Menu -->
+  <!-- Left Side: Profile Icon -->
+  <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+    <mat-icon class="profile-icon">account_circle</mat-icon>
+  </button>
+
   <mat-menu #profileMenu="matMenu">
     <button mat-menu-item (click)="OnProfile()">
       <mat-icon>person</mat-icon> Profile
@@ -10,13 +14,25 @@
     </button>
   </mat-menu>
 
-  <button mat-icon-button [matMenuTriggerFor]="profileMenu">
-    <mat-icon class="profile-icon">account_circle</mat-icon>
-  </button>
-
-  <!-- Title in Center -->
+  <!-- Center: Title -->
   <span class="title">KINONDONI MUNICIPAL</span>
 
-  <!-- Emblem Icon on the Right -->
-  <mat-icon class="profile-icon">verified</mat-icon>
+  <!-- Right Side: Language Switcher & Emblem -->
+  <div class="right-actions">
+    <button mat-icon-button [matMenuTriggerFor]="langMenu" aria-label="Change Language">
+      <mat-icon class="profile-icon">language</mat-icon>
+    </button>
+    
+    <mat-menu #langMenu="matMenu">
+      <button mat-menu-item (click)="switchLanguage('en')">
+        <span>English</span>
+      </button>
+      <button mat-menu-item (click)="switchLanguage('sw')">
+        <span>Swahili</span>
+      </button>
+    </mat-menu>
+
+    <mat-icon class="profile-icon emblem-icon">verified</mat-icon>
+  </div>
+
 </mat-toolbar>

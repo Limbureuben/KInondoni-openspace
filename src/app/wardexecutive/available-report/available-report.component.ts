@@ -46,7 +46,7 @@ import { WardReplayComponent } from '../ward-replay/ward-replay.component';
 })
 export class AvailableReportComponent   implements OnInit{
     dataSource = new MatTableDataSource<any>([]);
-  displayedColumns: string[] = ['report_id','space_name','street','message', 'status', 'actions'];
+  displayedColumns: string[] = ['report_id','space_name','street', 'status', 'actions'];
   // displayedColumns: string[] = ['space', 'username', 'contact', 'date', 'duration', 'purpose', 'district', 'file', 'actions'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

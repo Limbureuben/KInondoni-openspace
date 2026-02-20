@@ -17,29 +17,34 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private languageService: LanguageService
+  ) { }
 
   OnProfile() {
-  const dialogRef = this.dialog.open(SharingprofileComponent, {
-        width: '400px',
-        disableClose: false
-      })
-    }
+    const dialogRef = this.dialog.open(SharingprofileComponent, {
+      width: '400px',
+      disableClose: false
+    })
+  }
 
   OnLogout() {
-  localStorage.removeItem('token');
-  localStorage.removeItem('role');
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
 
-  this.toastr.success('Logout success', '', {
-    timeOut: 1500,
-    progressBar: true,
-    positionClass: 'toast-top-right'
-  });
-  setTimeout(() => {
-    this.router.navigate(['/user-home']);
-  }, 1500);
-}
+    this.toastr.success('Logout success', '', {
+      timeOut: 1500,
+      progressBar: true,
+      positionClass: 'toast-top-right'
+    });
+    setTimeout(() => {
+      this.router.navigate(['/user-home']);
+    }, 1500);
+  }
+
+  switchLanguage(lang: string) {
+    this.languageService.changeLanguage(lang);
+  }
 
 }
 

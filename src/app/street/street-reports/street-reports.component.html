@@ -55,14 +55,6 @@
             <mat-icon>forward</mat-icon>
             {{ row.forwarded_to_admin ? 'Forwarded' : 'Forward' }}
           </button>
-          <button
-            mat-raised-button
-            color="accent"
-            (click)="replyReport(row); $event.stopPropagation()"
-            style="margin-left: 8px;">
-            <mat-icon>reply</mat-icon>
-            Reply
-          </button>
         </td>
       </ng-container>
 

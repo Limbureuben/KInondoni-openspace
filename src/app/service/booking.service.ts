@@ -120,11 +120,26 @@ getAdminBookingsByDistrict(): Observable<any> {
     return this.http.get(`${this.resetUrl}/api/v1/my-bookings`);
   }
   
+  // replyToReport(reportId: number, message: string): Observable<any> {
+  //   const token = localStorage.getItem('token');
+  //   const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+  //   return this.http.post(`${this.resetUrl}/api/v1/reports/reply/${reportId}/`, { message }, { headers });
+  // }
+
+
   replyToReport(reportId: number, message: string): Observable<any> {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    return this.http.post(`${this.resetUrl}/api/v1/reports/reply/${reportId}/`, { message }, { headers });
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.post(
+      `${this.resetUrl}/api/v1/reports/${reportId}/reply/`,
+      { message },
+      { headers }
+    );
   }
+
 
   deleteReport(reportId: number) {
     return this.http.delete(`${this.resetUrl}/api/v1/delete-report/${reportId}/`);

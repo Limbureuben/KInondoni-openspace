@@ -1,22 +1,40 @@
 <header class="header">
-  <div class="logo">
-    <img src="assets/images/logo.png" alt="Logo">
+  <div class="header-left">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="Logo">
+    </div>
+    <div class="title">
+      SYSTEM FOR MANAGEMENT OF OPEN SPACES IN KINONDONI MUNICIPALITY
+    </div>
   </div>
 
-  <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+  <div class="header-right">
+    <button mat-icon-button [matMenuTriggerFor]="langMenu" aria-label="Change Language" class="lang-btn">
+      <mat-icon>language</mat-icon>
+    </button>
 
-  <div class="title">
-    SYSTEM FOR MANAGEMENT OF OPEN SPACES IN KINONDONI MUNICIPALITY
+    <mat-menu #langMenu="matMenu">
+      <button mat-menu-item (click)="changeLanguage('en')">
+        <span>English</span>
+      </button>
+      <button mat-menu-item (click)="changeLanguage('sw')">
+        <span>Swahili</span>
+      </button>
+    </mat-menu>
+
+
+    <button class="theme-toggle" (click)="toggleTheme()">
+      <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
   </div>
-
-  <!-- Theme Toggle Button -->
 </header>
 
 <div class="container">
   <h2>Services</h2>
   <p class="description">
     Select a service below to continue: Choose Open Spaces to report unusual environmental activities,
-    or choose Reserve Open Space to book an area for activities based on its cost within Kinondoni Municipality. Thank you.
+    or choose Reserve Open Space to book an area for activities based on its cost within Kinondoni Municipality. Thank
+    you.
   </p>
 
   <div class="cards-wrapper">
@@ -46,38 +64,16 @@
   </div>
 </div>
 
-<div #chatbotContainer class="elfsight-app-dfc68b9e-bb1a-4060-a57a-bf22802f801e" data-elfsight-app-lazy style="display: none;"></div>
+<div #chatbotContainer class="elfsight-app-dfc68b9e-bb1a-4060-a57a-bf22802f801e" data-elfsight-app-lazy
+  style="display: none;"></div>
 
-<!-- Hidden Google Translate -->
+
 <div id="google_translate_element" style="display:none;"></div>
 
-<!-- ===== Language Switcher in Footer ===== -->
-<div class="language-footer">
-  <!-- Show "Change Language" link first -->
-  <span
-    *ngIf="!showLanguageButtons"
-    class="language-title"
-    (click)="toggleLanguage()"
-  >
-     Change Language 
-  </span>
 
-  <!-- After clicking, show flag buttons -->
-  <div *ngIf="showLanguageButtons" class="language-flags">
-    <img
-      src="assets/images/flags/en.svg"
-      alt="English"
-      class="flag"
-      title="English"
-      (click)="changeLanguage('en')"
-    />
-    <span class="divider">/</span>
-    <img
-      src="assets/images/flags/sw.svg"
-      alt="Swahili"
-      class="flag"
-      title="Swahili"
-      (click)="changeLanguage('sw')"
-    />
-  </div>
-</div>
+
+
+
+
+
+

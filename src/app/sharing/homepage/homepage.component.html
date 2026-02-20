@@ -1,4 +1,4 @@
-<app-header/>
+<!-- <app-header/>
 <div class="container">
   <h2 class="title">Huduma Zetu</h2>
   <p class="description">
@@ -24,6 +24,47 @@
       <mat-card-title>Weka Nafasi ya Eneo Wazi</mat-card-title>
       <mat-card-content>
         <p>Hifadhi maeneo wazi yaliyopo kwa ajili ya matukio yako kwa urahisi na haraka.</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> -->
+
+
+
+
+
+
+<app-header/>
+<div class="container">
+  <h2 class="title">Our Services</h2>
+  <p class="description">
+    Select a service below to continue. Choose <strong>Report</strong> to submit information about
+    unusual or improper use of an open space, or choose <strong>Book Space</strong> to reserve an
+    open area for an event within Kinondoni Municipal Council.
+  </p>
+
+  <div class="cards-wrapper">
+    <mat-card class="card" (click)="goToReport()">
+      <div class="icon-wrapper">
+        <mat-icon class="card-icon" color="warn">report</mat-icon>
+      </div>
+      <mat-card-title>Report an Open Space Issue</mat-card-title>
+      <mat-card-content>
+        <p>
+          Help protect our environment by reporting misuse or illegal activities in open spaces.
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card" (click)="goToBook()">
+      <div class="icon-wrapper">
+        <mat-icon class="card-icon" color="primary">event</mat-icon>
+      </div>
+      <mat-card-title>Book an Open Space</mat-card-title>
+      <mat-card-content>
+        <p>
+          Easily and quickly reserve available open spaces for your events.
+        </p>
       </mat-card-content>
     </mat-card>
   </div>
